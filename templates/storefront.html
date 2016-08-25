@@ -55,10 +55,10 @@
       <td class="image"><img src="{{tea.imageUrl}}" alt="" /></td>
       <td>
         <div><span class="floatLeft"><b>{{tea.name | uppercase}}</b></span><span class="floatRight"><b>Quantity:</b>
-          <select class="" name="" ng-model="quantity">
+          <select class="" name="" ng-model="tea.quantity">
             <option ng-repeat = "number in quantities">{{number}}</option>
         </select>
-        <button type="button" class="btn btn-warning btn-sm" ng-click = "addToCart(tea.name, tea.imageUrl, tea.caffeineScale, tea.ingredients, tea.rating, tea.price, quantity)">Add to bag</button>
+        <button type="button" class="btn btn-warning btn-sm" ng-click = "addToCart(tea)">Add to bag</button>
       </span></div>
         <br><br>
 
