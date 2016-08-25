@@ -17,15 +17,16 @@ app.controller('storefrontController', function($scope, $http, CartFactory){
     } else {
       for (var i = 0; i < CartFactory.cartTeas.length; i++) {
         if (CartFactory.cartTeas.indexOf(tea) === -1) {
-          console.log("AHAHHAHAHA");
           CartFactory.cartTeas.push(tea);
           break
         } else {
           CartFactory.cartTeas[i].quantity += (Number(tea.quantity) + 1)
           // find out why you had to add one more?
+          // but it works fine when you just hit the add button
           break
         }
       }
-    console.log(CartFactory.cartTeas);
+    }
+    $scope.view.cartTotal = CartFactory.cartQuantity.number += Number(tea.quantity)
   }
 })
