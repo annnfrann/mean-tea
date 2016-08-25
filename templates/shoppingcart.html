@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#/">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<h3>
+  <span class="floatLeft">My Shopping Cart</span>
+  <span class="floatRight">Order total: a price</span>
+</h3>
+<br><br>
+<table class="table table-bordered">
+  <thead>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="tea in view.teas" >
+      <td>
+        <h4>{{tea.name | uppercase}}</h4>
+        <img src="{{tea.image}}" alt="" />
+        <p><b>Caffeine scale:</b> {{tea.caffeine}}</p>
+        <p><b>Ingredients:</b> {{tea.ingredients}}</p>
+        <p><b>Rating:</b> {{tea.rating}}</p>
+      </td>
+      <td>{{tea.quantity}}</td>
+      <td>{{(tea.price / 100) * tea.quantity | currency}}</td>
+      <td>
+        <button type="button" name="button">edit</button>
+        <button type="button" name="button">remove</button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>

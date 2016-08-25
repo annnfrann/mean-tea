@@ -1,0 +1,77 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#/">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <select class="" ng-model="searchTeaByCategory">
+          <option value="awesome">awesome</option>
+          <option value="cold">cold</option>
+          <option value="dark">dark</option>
+          <option value="dry">dry</option>
+          <option value="hot">hot</option>
+          <option value="lucid">lucid</option>
+          <option value="spring">spring</option>
+          <option value="summer">summer</option>
+          <option value="warm">warm</option>
+          <option value="winter">option</option>
+        </select>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search by name" ng-model="searchTeaByName">
+        </div>
+      </form>
+     <ul class="nav navbar-nav navbar-right">
+       <a href="#/cart"><button type="button" class="btn btn-default navbar-btn"><b>Checkout</b> | Bag: {{view.cartTotal}}</button></a>
+     </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <th>Tea</th>
+    <th><span class="floatLeft">Information</span>
+      <span class="floatRight">Sort by price
+        <select ng-model="sortBy">
+          <option value="price">lowest to highest</option>
+          <option value="-price">highest to lowest</option>
+        </select></span></th>
+    </thead>
+  <tbody>
+    <tr ng-repeat = "tea in view.allTeas | orderBy : sortBy | filter : searchTeaByName | filter : searchTeaByCategory">
+      <td class="image"><img src="{{tea.imageUrl}}" alt="" /></td>
+      <td>
+        <div><span class="floatLeft"><b>{{tea.name | uppercase}}</b></span><span class="floatRight"><b>Quantity:</b>
+          <select class="" name="" ng-model="quantity">
+            <option ng-repeat = "number in quantities">{{number}}</option>
+        </select>
+        <button type="button" class="btn btn-warning btn-sm" ng-click = "addToCart(tea.name, tea.imageUrl, tea.caffeineScale, tea.ingredients, tea.rating, tea.price, quantity)">Add to bag</button>
+      </span></div>
+        <br><br>
+
+        <p><b>tea price:</b> {{tea.price / 100 | currency}}</p>
+        <p><b>caffeine scale:</b> {{tea.caffeineScale}}</p>
+        <p><b>ingredients:</b> {{tea.ingredients}}</p>
+        <p><b>rating:</b> {{tea.rating}}</p>
+        <p><b>in stock?</b> {{tea.inStock?'yes':'no'}}</p>
+        <p><b>categories:</b></p>
+        <ul>
+          <li ng-repeat = "category in tea.categories">{{category}}</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
