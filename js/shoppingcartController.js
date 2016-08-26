@@ -20,7 +20,8 @@ app.controller('shoppingcartController', function($scope, CartFactory){
     $scope.view.teas.splice(input, 1)
   }
   $scope.updateQuantity = function(index, newQuantity){
-    var oldPrice = $scope.view.teas[index].price/100
+    var oldPrice = $scope.view.teas[index].price/100 * $scope.view.teas[index].quantity
+    console.log(oldPrice);
     $scope.view.teas[index].quantity = newQuantity
     $scope.view.orderTotal = $scope.view.orderTotal - oldPrice + (newQuantity * $scope.view.teas[index].price) /100
   }
