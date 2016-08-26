@@ -22,7 +22,7 @@
 
 <h3>
   <span class="floatLeft">My Shopping Cart</span>
-  <span class="floatRight">Order total: a price</span>
+  <span class="floatRight">Order total: {{view.orderTotal | currency}}</span>
 </h3>
 <br><br>
 <table class="table table-bordered">
@@ -35,18 +35,23 @@
     <tr ng-repeat="tea in view.teas" >
       <td>
         <h4>{{tea.name | uppercase}}</h4>
-        <img src="{{tea.image}}" alt="" />
-        <p><b>Caffeine scale:</b> {{tea.caffeine}}</p>
+        <img src="{{tea.imageUrl}}" alt="" />
+        <p><b>Caffeine scale:</b> {{tea.caffeineScale}}</p>
         <p><b>Ingredients:</b> {{tea.ingredients}}</p>
         <p><b>Rating:</b> {{tea.rating}}</p>
       </td>
       <td>{{tea.quantity}}</td>
       <td>{{(tea.price / 100) * tea.quantity | currency}}</td>
       <td>
-        <button type="button" name="button">edit</button>
-        <!-- above button will let user edit total number of items  -->
-        <button type="button" name="button">remove</button>
-        <!-- above button will remove that object from the array -->
+        <button type="button" name="button" ng-click="editQuantity = !editQuantity">edit</button>
+        <button type="button" name="button" ng-click="removeFromCart($index)">remove</button>
+        <br>
+        <select ng-show="editQuantity" ng-model="editedQuantity">
+          <option value="" disabled selected>update quantity</option>
+          <option ng-repeat = "number in quantities">{{number}}</option>
+        </select>
+        <br>
+        <button type="button" name="button" ng-show = "editQuantity" ng-click="editQuantity = !editQuantity; updateQuantity($index, editedQuantity)">update!</button>
       </td>
 
     </tr>
